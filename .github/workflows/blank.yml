@@ -45,7 +45,7 @@ jobs:
         shell: cmd
 
       - name: Run with proper input
-        run: .\build\Debug\lab_3.exe TicTacToe < ..\WintestA.txt > WintestAOutput.txt 
+        run: .\build\Debug\lab_3.exe TicTacToe < WintestA.txt > WintestAOutput.txt 
         shell: cmd
 
       - name: Display Student Output
