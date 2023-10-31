@@ -1,0 +1,91 @@
+# This is a basic workflow to help you get started with Actions
+
+name: gradingWorkflow
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  build-and-test:
+    # The type of runner that the job will run on
+    runs-on: windows-2019
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      
+      - uses: actions/checkout@v3
+
+      - name: check grading files
+        uses: actions/checkout@v3
+        with:
+          repository: yxc1yxc/gradingFiles
+          token: ${{ secrets.WARNING }}
+          path: grading
+      
+
+      
+      - name: Setup CMake
+        uses: jwlawson/actions-setup-cmake@v1.9
+
+      - name: Create Build Environment
+        run: cmake -B build
+
+      - name: Build
+        run: cmake --build build --config Debug
+
+      - name: List files
+        run: dir
+
+      - name: List
+        run: Get-ChildItem -Path .\grading\
+            
+
+      - name: Run with proper input
+        run: .\build\Debug\*.exe .\grading\input_file.txt > student_output.txt 
+
+        
+      
+
+      - name: Compare outputs
+        run: fc student_output.txt .\grading\solution_output.txt
+        shell: cmd
+
+
+      - name: Run with bad input
+        id: bad_input_check
+        run: |
+          try {
+          .\build\Debug\*.exe gkaygakydfla
+          if ($LASTEXITCODE -eq 0) {
+            Write-Output "Program should have failed for bad input!"
+            echo "::set-output name=exit_code::2"
+            exit 2
+          }
+          } catch {
+            Write-Output "Program crashed or encountered an exception!"
+            echo "::set-output name=exit_code::3"
+            exit 3
+          }
+        continue-on-error: true
+
+
+      - name: Check exit code from previous step
+        run: |
+          if ("${{ steps.bad_input_check.outputs.exit_code }}" -eq "2") {
+            Write-Output "Program should have failed for bad input!"
+            exit 1
+          }
+          elseif ("${{ steps.bad_input_check.outputs.exit_code }}" -eq "3") {
+            Write-Output "Program crashed or encountered an exception!"
+            exit 1
+          }
