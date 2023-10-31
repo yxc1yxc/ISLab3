@@ -38,10 +38,14 @@ jobs:
 
       - name: List files
         run: dir
-            
+
+        
+      - name: List Debug directory contents
+        run: dir .\build\Debug
+        shell: cmd
 
       - name: Run with proper input
-        run: .\build\Debug\*.exe TicTacToe < WintestA.txt > WintestAOutput.txt 
+        run: .\build\Debug\*.exe TicTacToe < ..\WintestA.txt > WintestAOutput.txt 
         shell: cmd
 
       - name: Display Student Output
