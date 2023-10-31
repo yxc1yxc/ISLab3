@@ -51,7 +51,7 @@ jobs:
       - name: Check output for 'win'
         run: |
           $content = Get-Content WintestAOutput.txt
-          if ($content -match "win" -or $content -match "won") {
+          if ($content -match "win" -or $content -match "www") {
             Write-Host "Output check passed: 'win' found."
           } else {
             Write-Host "Output check failed: 'win' not found."
