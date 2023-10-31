@@ -48,8 +48,15 @@ jobs:
         run: .\build\Debug\lab_3.exe TicTacToe < WintestA.txt > WintestAOutput.txt 
         shell: cmd
 
-      - name: Display Student Output
-        run: Get-Content WintestAOutput.txt
+      - name: Check output for 'win'
+        run: |
+          $content = Get-Content WintestAOutput.txt
+          if ($content -match "win" -or $content -match "won") {
+            Write-Host "Output check passed: 'win' found."
+          } else {
+            Write-Host "Output check failed: 'win' not found."
+            exit 1
+          }
         
 
       
