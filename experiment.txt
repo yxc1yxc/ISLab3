@@ -1,0 +1,66 @@
+4          
+3          
+2          
+1   X      
+0          
+  0 1 2 3 4
+
+Player X: 1, 1;
+
+It is Player O's turn.
+Enter coordinates between 1 and 3 in the form 'X,Y' to play a piece.
+Enter 'quit' to end the game.
+
+
+4          
+3          
+2   O      
+1   X      
+0          
+  0 1 2 3 4
+
+Player O: 1, 2;
+
+It is Player X's turn.
+Enter coordinates between 1 and 3 in the form 'X,Y' to play a piece.
+Enter 'quit' to end the game.
+
+
+4          
+3          
+2   O X    
+1   X      
+0          
+  0 1 2 3 4
+
+Player X: 1, 1; 2, 2;
+
+It is Player O's turn.
+Enter coordinates between 1 and 3 in the form 'X,Y' to play a piece.
+Enter 'quit' to end the game.
+
+
+4          
+3   O      
+2   O X    
+1   X      
+0          
+  0 1 2 3 4
+
+Player O: 1, 2; 1, 3;
+
+It is Player X's turn.
+Enter coordinates between 1 and 3 in the form 'X,Y' to play a piece.
+Enter 'quit' to end the game.
+
+
+4          
+3   O   X  
+2   O X    
+1   X      
+0          
+  0 1 2 3 4
+
+Player X: 1, 1; 2, 2; 3, 3;
+
+Player X won!
