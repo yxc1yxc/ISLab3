@@ -115,6 +115,12 @@ jobs:
         shell: cmd
         continue-on-error: true
 
+      - name: Display output content
+        run: |
+          $content = Get-Content quitTestAOutPut.txt -Raw
+          Write-Host "Content of quitTestAOutPut.txt:"
+          Write-Host $content
+
       - name: check quit first
         run: |
           $actual = Get-Content quitTestAOutPut.txt -Raw
@@ -138,6 +144,8 @@ jobs:
         run: .\build\Debug\lab_3.exe TicTacToe < quitTestB.txt > quitTestBOutPut.txt 
         shell: cmd
         continue-on-error: true
+
+      
 
       - name: check quit second
         run: |
