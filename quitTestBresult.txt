@@ -1,2 +1,2 @@
 quit
-4
+1 turns
