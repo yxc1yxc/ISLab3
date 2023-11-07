@@ -174,7 +174,7 @@ jobs:
 
       - name: check history
         run: |
-          $actual = Get-Content historyOutput.txt -Raw
+          $actual = Get-Content experiment.txt -Raw
           $conditions = Get-Content -Path recordPattern.txt
           
           $allMatched = $true
