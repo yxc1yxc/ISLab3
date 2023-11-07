@@ -129,15 +129,17 @@ jobs:
           $allMatched = $true
           
           foreach ($condition in $conditions) {
-              if (-not ($content -match $condition)) {
+              if (-not ($actual -match $trimmedCondition)) {
                   $allMatched = $false
-                  Write-Host "$condition not found in the output."
-                  exit 1
+                  Write-Host "'$trimmedCondition' not found in the output."
+                  break
               }
           }
-          
+
           if ($allMatched) {
               Write-Host "All conditions found in the output."
+          } else {
+              exit 1
           }
 
       - name: input for quit part 2
@@ -155,7 +157,7 @@ jobs:
           $allMatched = $true
           
           foreach ($condition in $conditions) {
-              if (-not ($content -match $condition)) {
+              if (-not ($actual -match $condition)) {
                   $allMatched = $false
                   Write-Host "$condition not found in the output."
                   exit 1
