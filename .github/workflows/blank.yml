@@ -110,6 +110,52 @@ jobs:
             exit 1
           }
 
+      - name: input for quit
+        run: .\build\Debug\lab_3.exe TicTacToe < quitTestA.txt > quitTestAOutPut.txt 
+        shell: cmd
+
+      - name: check quit first
+        run: |
+          $actual = Get-Content quitTestAOutPut.txt -Raw
+          $conditions = Get-Content -Path quitTestAresult.txt
+          
+          $allMatched = $true
+          
+          foreach ($condition in $conditions) {
+              if (-not ($content -match $condition)) {
+                  $allMatched = $false
+                  Write-Host "$condition not found in the output."
+                  exit 1
+              }
+          }
+          
+          if ($allMatched) {
+              Write-Host "All conditions found in the output."
+          }
+
+      - name: input for quit part 2
+        run: .\build\Debug\lab_3.exe TicTacToe < quitTestB.txt > quitTestBOutPut.txt 
+        shell: cmd
+
+      - name: check quit second
+        run: |
+          $actual = Get-Content quitTestBOutPut.txt -Raw
+          $conditions = Get-Content -Path quitTestBresult.txt
+          
+          $allMatched = $true
+          
+          foreach ($condition in $conditions) {
+              if (-not ($content -match $condition)) {
+                  $allMatched = $false
+                  Write-Host "$condition not found in the output."
+                  exit 1
+              }
+          }
+          
+          if ($allMatched) {
+              Write-Host "All conditions found in the output."
+          }
+
       
 
 
