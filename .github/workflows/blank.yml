@@ -174,19 +174,32 @@ jobs:
 
       - name: check history
         run: |
-          $actual = Get-Content experiment.txt -Raw
+          $actualLines = Get-Content experiment.txt
           $conditions = Get-Content -Path recordPattern.txt
-          
           $allMatched = $true
           
+          # Iterate over each pattern
           foreach ($condition in $conditions) {
-              if (-not ($actual -match $condition)) {
+              # Initialize match flag for current pattern
+              $patternMatched = $false
+              
+              # Check current pattern against each line of the actual output
+              foreach ($line in $actualLines) {
+                  if ($line -match $condition) {
+                      $patternMatched = $true
+                      break # Pattern matched, no need to check further
+                  }
+              }
+          
+              # If the current pattern was not matched, report and set the failure flag
+              if (-not $patternMatched) {
                   $allMatched = $false
                   Write-Host "$condition not found in the output."
-                  exit 1
+                  exit 1 # Exit if any pattern does not match
               }
           }
           
+          # Report the final result
           if ($allMatched) {
               Write-Host "All conditions found in the output."
           }
