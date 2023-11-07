@@ -40,24 +40,20 @@ jobs:
         run: dir
 
         
-      - name: List Debug directory contents
-        run: dir .\build\Debug
-        shell: cmd
-
       - name: Run with proper input
-        run: .\build\Debug\lab_3.exe TicTacToe < WintestA.txt > WintestAOutput.txt 
+        run: .\build\Debug\lab_3.exe TicTacToe < WintestA.txt > testAOutput.txt 
         shell: cmd
 
-      - name: Check output for 'win'
+      - name: check empty board
         run: |
-          $content = Get-Content WintestAOutput.txt
-          if ($content -match "win" -or $content -match "www") {
-            Write-Host "Output check passed: 'win' found."
+          $actual = Get-Content testAOutput.txt -Raw
+          $expected = Get-Content emptyBoardTesting.txt -Raw
+          if ($actual -match $expected) {
+            Write-Host "Empty board state is correct."
           } else {
-            Write-Host "Output check failed: 'win' not found."
+            Write-Host "Empty board state is incorrect."
             exit 1
           }
-        
 
       
 
