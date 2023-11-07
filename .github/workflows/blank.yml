@@ -168,6 +168,30 @@ jobs:
               Write-Host "All conditions found in the output."
           }
 
+      - name: input for history check
+        run: .\build\Debug\lab_3.exe TicTacToe < WintestA.txt > historyOutput.txt
+        shell: cmd
+
+      - name: check quit second
+        run: |
+          $actual = Get-Content historyOutput.txt -Raw
+          $conditions = Get-Content -Path recordPattern.txt
+          
+          $allMatched = $true
+          
+          foreach ($condition in $conditions) {
+              if (-not ($actual -match $condition)) {
+                  $allMatched = $false
+                  Write-Host "$condition not found in the output."
+                  exit 1
+              }
+          }
+          
+          if ($allMatched) {
+              Write-Host "All conditions found in the output."
+          }
+
+
       
 
 
