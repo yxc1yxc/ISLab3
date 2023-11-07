@@ -55,6 +55,61 @@ jobs:
             exit 1
           }
 
+      - name: check first step
+        run: |
+          $actual = Get-Content testAOutput.txt -Raw
+          $expected = Get-Content testAstep1.txt -Raw
+          if ($actual -match $expected) {
+            Write-Host "step 1 is correct."
+          } else {
+            Write-Host "step 1 is incorrect."
+            exit 1
+          }
+
+      - name: check second step
+        run: |
+          $actual = Get-Content testAOutput.txt -Raw
+          $expected = Get-Content testAstep2.txt -Raw
+          if ($actual -match $expected) {
+            Write-Host "step 2 is correct."
+          } else {
+            Write-Host "step 2 is incorrect."
+            exit 1
+          }
+
+      - name: check third step
+        run: |
+          $actual = Get-Content testAOutput.txt -Raw
+          $expected = Get-Content testAstep3.txt -Raw
+          if ($actual -match $expected) {
+            Write-Host "step 3 is correct."
+          } else {
+            Write-Host "step 3 is incorrect."
+            exit 1
+          }
+
+      - name: check fourth step
+        run: |
+          $actual = Get-Content testAOutput.txt -Raw
+          $expected = Get-Content testAstep4.txt -Raw
+          if ($actual -match $expected) {
+            Write-Host "step 4 is correct."
+          } else {
+            Write-Host "step 4 is incorrect."
+            exit 1
+          }
+
+      - name: check fifth step
+        run: |
+          $actual = Get-Content testAOutput.txt -Raw
+          $expected = Get-Content testAstep5.txt -Raw
+          if ($actual -match $expected) {
+            Write-Host "step 5 is correct."
+          } else {
+            Write-Host "step 5 is incorrect."
+            exit 1
+          }
+
       
 
 
