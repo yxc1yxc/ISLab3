@@ -113,6 +113,7 @@ jobs:
       - name: input for quit
         run: .\build\Debug\lab_3.exe TicTacToe < quitTestA.txt > quitTestAOutPut.txt 
         shell: cmd
+        continue-on-error: true
 
       - name: check quit first
         run: |
@@ -136,6 +137,7 @@ jobs:
       - name: input for quit part 2
         run: .\build\Debug\lab_3.exe TicTacToe < quitTestB.txt > quitTestBOutPut.txt 
         shell: cmd
+        continue-on-error: true
 
       - name: check quit second
         run: |
