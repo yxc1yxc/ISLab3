@@ -172,7 +172,7 @@ jobs:
         run: .\build\Debug\lab_3.exe TicTacToe < WintestA.txt > historyOutput.txt
         shell: cmd
 
-      - name: check quit second
+      - name: check history
         run: |
           $actual = Get-Content historyOutput.txt -Raw
           $conditions = Get-Content -Path recordPattern.txt
