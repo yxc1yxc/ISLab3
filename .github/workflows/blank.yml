@@ -46,7 +46,7 @@ jobs:
 
       - name: check empty board
         run: |
-          $actual = Get-Content testAOutput.txt -Raw
+          $actual = Get-Content experiment.txt -Raw
           $expected = Get-Content emptyBoardTesting.txt -Raw
           if ($actual -match $expected) {
             Write-Host "Empty board state is correct."
