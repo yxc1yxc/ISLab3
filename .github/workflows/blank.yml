@@ -129,9 +129,9 @@ jobs:
           $allMatched = $true
           
           foreach ($condition in $conditions) {
-              if (-not ($actual -match $trimmedCondition)) {
+              if (-not ($actual -match $condition)) {
                   $allMatched = $false
-                  Write-Host "'$trimmedCondition' not found in the output."
+                  Write-Host "'$condition' not found in the output."
                   break
               }
           }
