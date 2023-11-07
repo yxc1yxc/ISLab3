@@ -5,7 +5,7 @@
 0          
   0 1 2 3 4
 
-Player X: 1, 1;
+Player X: 1, 0;
 
 It is Player O's turn.
 Enter coordinates between 1 and 3 in the form 'X,Y' to play a piece.
