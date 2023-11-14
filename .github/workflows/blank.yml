@@ -41,8 +41,7 @@ jobs:
 
         
       - name: Run with proper input
-        run: .\build\Debug\lab_3.exe TicTacToe < WintestA.txt > testAOutput.txt
-        shell: cmd
+        run: Get-Content WintestA.txt | .\build\Debug\lab_3.exe TicTacToe > testAOutput.txt
 
 
       - name: check empty board
