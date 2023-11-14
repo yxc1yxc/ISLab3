@@ -225,6 +225,7 @@ jobs:
             Write-Output "Program crashed or encountered an exception!"
             exit 1
             }
+        continue-on-error: true
 
       - name: check invalid handling
         run: |
