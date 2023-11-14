@@ -206,8 +206,25 @@ jobs:
 
 
       - name: Run with invalid input
-        run: .\build\Debug\lab_3.exe TicTacToe < invalidInput.txt > invalidOutput.txt 
+        id: invalid_input_check
+        run: |
+          try {
+          .\build\Debug\lab_3.exe TicTacToe < invalidInput.txt > invalidOutput.txt 
+          } catch{
+            Write-Output "Program crashed or encountered an exception!"
+            echo "::set-output name=exit_code::3"
+            exit 3
+          }
         shell: cmd
+        continue-on-error: true
+
+        
+      - name: Check crash from invalid
+        run: |
+            if ("${{ steps.invalid_input_check.outputs.exit_code }}" -eq "3") {
+            Write-Output "Program crashed or encountered an exception!"
+            exit 1
+            }
 
       - name: check invalid handling
         run: |
