@@ -174,7 +174,7 @@ jobs:
 
       - name: check history
         run: |
-          $actualLines = Get-Content experiment.txt
+          $actualLines = Get-Content historyOutput.txt
           $conditions = Get-Content -Path recordPattern.txt
           $allMatched = $true
           
@@ -203,7 +203,31 @@ jobs:
           if ($allMatched) {
               Write-Host "All conditions found in the output."
           }
-          
+
+
+      - name: Run with invalid input
+        run: .\build\Debug\lab_3.exe TicTacToe < invalidInput.txt > invalidOutput.txt 
+        shell: cmd
+
+      - name: check invalid handling
+        run: |
+          $actual = Get-Content invalidOutput.txt -Raw
+          $expected = Get-Content testAstep1.txt -Raw
+          if ($actual -match $expected) {
+            Write-Host "invalid input handling  success"
+          } else {
+            Write-Host "invalid input handling  failed"
+            exit 1
+          }
+
+          $actual = Get-Content invalidOutput.txt -Raw
+          $expected = Get-Content emptyBoardTesting.txt -Raw
+          if ($actual -match $expected) {
+            Write-Host "invalid input handling  success"
+          } else {
+            Write-Host "invalid input handling  failed"
+            exit 1
+          }
 
 
       
