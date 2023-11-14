@@ -41,7 +41,7 @@ jobs:
 
         
       - name: Run with proper input
-        run: Get-Content WintestA.txt | .\build\Debug\lab_3.exe TicTacToe > testAOutput.txt
+        run: Get-Content WintestA.txt | .\build\Debug\*.exe TicTacToe > testAOutput.txt
 
 
       - name: check empty board
@@ -209,7 +209,8 @@ jobs:
         id: invalid_input_check
         run: |
           try {
-          Get-Content invalidInput.txt .\build\Debug\lab_3.exe TicTacToe > invalidOutput.txt 
+          Get-Content invalidInput.txt | .\build\Debug\lab_3.exe TicTacToe > invalidOutput.txt
+          
           } catch{
             Write-Output "Program crashed or encountered an exception!"
             echo "::set-output name=exit_code::3"
