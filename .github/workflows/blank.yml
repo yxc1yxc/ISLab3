@@ -41,7 +41,8 @@ jobs:
 
         
       - name: Run with proper input
-        run: .\build\Debug\*.exe TicTacToe < WintestA.txt > testAOutput.txt 
+        run: .\build\Debug\*.exe TicTacToe < WintestA.txt > testAOutput.txt
+        shell: cmd
 
 
       - name: check empty board
@@ -215,6 +216,7 @@ jobs:
             echo "::set-output name=exit_code::3"
             exit 3
           }
+        shell: cmd
         continue-on-error: true
 
         
