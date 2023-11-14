@@ -41,8 +41,8 @@ jobs:
 
         
       - name: Run with proper input
-        run: .\build\Debug\lab_3.exe TicTacToe < WintestA.txt > testAOutput.txt 
-        shell: cmd
+        run: .\build\Debug\*.exe TicTacToe < WintestA.txt > testAOutput.txt 
+
 
       - name: check empty board
         run: |
@@ -209,13 +209,12 @@ jobs:
         id: invalid_input_check
         run: |
           try {
-          .\build\Debug\lab_3.exe TicTacToe < invalidInput.txt > invalidOutput.txt 
+          .\build\Debug\*.exe TicTacToe < invalidInput.txt > invalidOutput.txt 
           } catch{
             Write-Output "Program crashed or encountered an exception!"
             echo "::set-output name=exit_code::3"
             exit 3
           }
-        shell: cmd
         continue-on-error: true
 
         
