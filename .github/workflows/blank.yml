@@ -209,13 +209,12 @@ jobs:
         id: invalid_input_check
         run: |
           try {
-          .\build\Debug\lab_3.exe TicTacToe < invalidInput.txt > invalidOutput.txt 
+          Get-Content invalidInput.txt .\build\Debug\lab_3.exe TicTacToe > invalidOutput.txt 
           } catch{
             Write-Output "Program crashed or encountered an exception!"
             echo "::set-output name=exit_code::3"
             exit 3
           }
-        shell: cmd
         continue-on-error: true
 
         
