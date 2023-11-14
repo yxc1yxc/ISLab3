@@ -111,8 +111,7 @@ jobs:
           }
 
       - name: input for quit
-        run: .\build\Debug\lab_3.exe TicTacToe < quitTestA.txt > quitTestAOutPut.txt 
-        shell: cmd
+        run: Get-Content quitTestA.txt | .\build\Debug\*.exe TicTacToe > quitTestAOutPut.txt 
         continue-on-error: true
 
       - name: Display output content
@@ -143,8 +142,7 @@ jobs:
           }
 
       - name: input for quit part 2
-        run: .\build\Debug\lab_3.exe TicTacToe < quitTestB.txt > quitTestBOutPut.txt 
-        shell: cmd
+        run: Get-Content quitTestB.txt | .\build\Debug\*.exe TicTacToe > quitTestBOutPut.txt 
         continue-on-error: true
 
       
@@ -169,8 +167,7 @@ jobs:
           }
 
       - name: input for history check
-        run: .\build\Debug\lab_3.exe TicTacToe < WintestA.txt > historyOutput.txt
-        shell: cmd
+        run: Get-Content WintestA.txt | .\build\Debug\lab_3.exe TicTacToe > historyOutput.txt
 
       - name: check history
         run: |
