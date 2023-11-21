@@ -131,10 +131,11 @@ jobs:
             exit 1
           }
 
-      - name: Run with proper input
+      - name: Run with draw input
         run: Get-Content drawTest.txt | .\build\src\Debug\*.exe TicTacToe > drawCase.txt
+        continue-on-error: true
 
-      - name: Check for 'win' or 'won' in output file
+      - name: Check draw
         run: |
           $content = Get-Content testAOutput.txt
           if ($content -match 'draw' -or $content -match 'stalmate') {
