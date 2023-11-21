@@ -44,6 +44,7 @@ jobs:
 
       - name: Run with improper input
         run: Get-Content WintestA.txt | .\build\src\Debug\*.exe abcde > temp.txt
+        continue-on-error: true
 
         
       - name: Display
