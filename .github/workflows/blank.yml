@@ -227,7 +227,7 @@ jobs:
             exit 3
           }
           Write-Output "Program terminated normally with 'quit' command."
-          }
+          
 
         
       - name: Check crash from invalid
@@ -236,7 +236,6 @@ jobs:
             Write-Output "Program crashed or encountered an exception!"
             exit 1
             }
-        continue-on-error: true
 
       - name: check invalid handling
         run: |
