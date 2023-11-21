@@ -75,7 +75,7 @@ jobs:
 
         
       - name: Display
-        run: Get-Content temp.txt
+        run: Get-Content improperOutput.txt
 
         
       - name: Run with proper input
