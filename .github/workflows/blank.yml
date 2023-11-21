@@ -217,15 +217,17 @@ jobs:
       - name: Run with invalid input
         id: invalid_input_check
         run: |
+          $ErrorActionPreference = 'Stop'
           try {
-          Get-Content invalidInput.txt | .\build\src\Debug\* TicTacToe > invalidOutput.txt
-          
-          } catch{
+            Get-Content invalidInput.txt | .\build\src\Debug\*.exe TicTacToe > invalidOutput.txt
+            $exitCode = $LastExitCode
+          } catch {
             Write-Output "Program crashed or encountered an exception!"
             echo "::set-output name=exit_code::3"
             exit 3
           }
-        continue-on-error: true
+          Write-Output "Program terminated normally with 'quit' command."
+          }
 
         
       - name: Check crash from invalid
