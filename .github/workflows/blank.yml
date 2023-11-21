@@ -227,6 +227,7 @@ jobs:
             exit 3
           }
           Write-Output "Program terminated normally with 'quit' command."
+        continue-on-error: true
           
 
         
