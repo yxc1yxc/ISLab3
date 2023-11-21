@@ -71,7 +71,7 @@ jobs:
             Write-Host "step 1 is incorrect."
             exit 1
           }
-        continue-on-error: true
+
 
       - name: check second step
         run: |
@@ -83,7 +83,7 @@ jobs:
             Write-Host "step 2 is incorrect."
             exit 1
           }
-        continue-on-error: true
+
 
       - name: check third step
         run: |
@@ -95,7 +95,7 @@ jobs:
             Write-Host "step 3 is incorrect."
             exit 1
           }
-        continue-on-error: true
+
 
       - name: check fourth step
         run: |
@@ -107,7 +107,7 @@ jobs:
             Write-Host "step 4 is incorrect."
             exit 1
           }
-        continue-on-error: true
+
 
       - name: check fifth step
         run: |
@@ -119,7 +119,7 @@ jobs:
             Write-Host "step 5 is incorrect."
             exit 1
           }
-        continue-on-error: true
+
 
       - name: input for quit
         run: Get-Content quitTestA.txt | .\build\src\Debug\*.exe TicTacToe > quitTestAOutPut.txt 
