@@ -53,6 +53,8 @@ jobs:
                 echo "::set-output name=exit_code::3"
                 exit 3
               }
+        continue-on-error: true
+
 
       - name: Check crash from improper
         run: |
