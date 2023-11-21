@@ -44,7 +44,7 @@ jobs:
 
       - name: Run with improper input
         id: improperStatus
-        run: .\build\src\Debug\*.exe abcde > temp.txt
+        run: |
             try {
                 .\build\src\Debug\*.exe abcde > improperOutput.txt
                 $exitCode = $LastExitCode
