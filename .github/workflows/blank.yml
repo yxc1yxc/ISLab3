@@ -45,6 +45,7 @@ jobs:
         
       - name: Run with proper input
         run: Get-Content WintestA.txt | .\build\src\Debug\*.exe TicTacToe > testAOutput.txt
+        
 
       - name: Display testAOutput.txt
         run: Get-Content testAOutput.txt
@@ -127,6 +128,19 @@ jobs:
             Write-Host "step 5 is correct."
           } else {
             Write-Host "step 5 is incorrect."
+            exit 1
+          }
+
+      - name: Run with proper input
+        run: Get-Content drawTest.txt | .\build\src\Debug\*.exe TicTacToe > drawCase.txt
+
+      - name: Check for 'win' or 'won' in output file
+        run: |
+          $content = Get-Content testAOutput.txt
+          if ($content -match 'draw' -or $content -match 'stalmate') {
+            Write-Output "Test draw passed"
+          } else {
+            Write-Output "Test draw failed"
             exit 1
           }
 
