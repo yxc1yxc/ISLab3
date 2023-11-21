@@ -43,8 +43,33 @@ jobs:
         run: dir build/src
 
       - name: Run with improper input
-        run: Get-Content WintestA.txt | .\build\src\Debug\*.exe abcde > temp.txt
-        continue-on-error: true
+        id: improperStatus
+        run: .\build\src\Debug\*.exe abcde > temp.txt
+            try {
+                .\build\src\Debug\*.exe abcde > improperOutput.txt
+                $exitCode = $LastExitCode
+              } catch {
+                Write-Output "Program crashed or encountered an exception!"
+                echo "::set-output name=exit_code::3"
+                exit 3
+              }
+
+      - name: Check crash from improper
+        run: |
+            if ("${{ steps.improperStatus.outputs.exit_code }}" -eq "3") {
+            Write-Output "Program crashed or encountered an exception!"
+            exit 1
+            }
+        
+      - name: Check improper
+        run: |
+          $content = Get-Content improperOutput.txt
+          if ($content -match 'usage') {
+            Write-Output "passed"
+          } else {
+            Write-Output "failed"
+            exit 1
+          }
 
         
       - name: Display
