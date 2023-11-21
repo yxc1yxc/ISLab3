@@ -49,6 +49,16 @@ jobs:
       - name: Display testAOutput.txt
         run: Get-Content testAOutput.txt
 
+      - name: Check for 'win' or 'won' in output file
+        run: |
+          $content = Get-Content testAOutput.txt
+          if ($content -match 'win' -or $content -match 'won') {
+            Write-Output "Test win passed"
+          } else {
+            Write-Output "Test win failed"
+            exit 1
+          }
+
 
       - name: check empty board
         run: |
