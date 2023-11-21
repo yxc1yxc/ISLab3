@@ -42,6 +42,13 @@ jobs:
       - name: List files in build directory
         run: dir build/src
 
+      - name: Run with improper input
+        run: Get-Content WintestA.txt | .\build\src\Debug\*.exe abcde > temp.txt
+
+        
+      - name: Display
+        run: Get-Content temp.txt
+
         
       - name: Run with proper input
         run: Get-Content WintestA.txt | .\build\src\Debug\*.exe TicTacToe > testAOutput.txt
