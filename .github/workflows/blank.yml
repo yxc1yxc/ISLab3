@@ -137,7 +137,7 @@ jobs:
 
       - name: Check draw
         run: |
-          $content = Get-Content testAOutput.txt
+          $content = Get-Content drawCase.txt
           if ($content -match 'draw' -or $content -match 'stalmate') {
             Write-Output "Test draw passed"
           } else {
