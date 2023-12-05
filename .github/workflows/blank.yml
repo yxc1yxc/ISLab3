@@ -71,7 +71,7 @@ jobs:
             Write-Output "failed"
             exit 1
           }
-      continue-on-error: true
+        continue-on-error: true
 
         
       - name: Display
