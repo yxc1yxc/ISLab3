@@ -254,6 +254,94 @@ jobs:
             exit 1
           }
 
+      - name: Run with proper input C
+        run: Get-Content WintestC.txt | .\build\src\Debug\*.exe TicTacToe > testCOutput.txt
+        
+
+      - name: Display testCOutput.txt
+        run: Get-Content testCOutput.txt
+
+      - name: Check for 'win' or 'won' in output file
+        run: |
+          $content = Get-Content testCOutput.txt
+          if ($content -match 'win' -or $content -match 'won') {
+            Write-Output "Test win passed"
+          } else {
+            Write-Output "Test win failed"
+            exit 1
+          }
+
+
+      - name: check empty board
+        run: |
+          $actual = Get-Content testCOutput.txt -Raw
+          $expected = Get-Content emptyBoardTesting.txt -Raw
+          if ($actual -match $expected) {
+            Write-Host "Empty board state is correct."
+          } else {
+            Write-Host "Empty board state is incorrect."
+            exit 1
+          }
+
+      - name: check first step
+        run: |
+          $actual = Get-Content testCOutput.txt -Raw
+          $expected = Get-Content testCstep1.txt -Raw
+          if ($actual -match $expected) {
+            Write-Host "step 1 is correct."
+          } else {
+            Write-Host "step 1 is incorrect."
+            exit 1
+          }
+
+
+      - name: check second step
+        run: |
+          $actual = Get-Content testCOutput.txt -Raw
+          $expected = Get-Content testCstep2.txt -Raw
+          if ($actual -match $expected) {
+            Write-Host "step 2 is correct."
+          } else {
+            Write-Host "step 2 is incorrect."
+            exit 1
+          }
+
+
+      - name: check third step
+        run: |
+          $actual = Get-Content testCOutput.txt -Raw
+          $expected = Get-Content testCstep3.txt -Raw
+          if ($actual -match $expected) {
+            Write-Host "step 3 is correct."
+          } else {
+            Write-Host "step 3 is incorrect."
+            exit 1
+          }
+
+
+      - name: check fourth step
+        run: |
+          $actual = Get-Content testCOutput.txt -Raw
+          $expected = Get-Content testCstep4.txt -Raw
+          if ($actual -match $expected) {
+            Write-Host "step 4 is correct."
+          } else {
+            Write-Host "step 4 is incorrect."
+            exit 1
+          }
+
+
+      - name: check fifth step
+        run: |
+          $actual = Get-Content testCOutput.txt -Raw
+          $expected = Get-Content testCstep5.txt -Raw
+          if ($actual -match $expected) {
+            Write-Host "step 5 is correct."
+          } else {
+            Write-Host "step 5 is incorrect."
+            exit 1
+          }
+
       - name: Run with draw input
         run: Get-Content drawTest.txt | .\build\src\Debug\*.exe TicTacToe > drawCase.txt
         continue-on-error: true
