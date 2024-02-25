@@ -35,12 +35,6 @@ jobs:
       - name: Build
         run: cmake --build build --config Debug
 
-      - name: List files
-        run: dir
-
-      - name: List files in build directory
-        run: dir build/src
-
 
       - name: Run with bad input
         id: bad_input_check
@@ -448,6 +442,9 @@ jobs:
 
       - name: input for history check
         run: Get-Content WintestA.txt | .\build\src\Debug\*.exe TicTacToe > historyOutput.txt
+
+      - name: Display
+        run: Get-Content historyOutput.txt
 
       - name: check history
         run: |
