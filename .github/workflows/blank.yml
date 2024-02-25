@@ -6,7 +6,7 @@ name: gradingWorkflow
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
     branches: [ "main" ]
 
@@ -23,6 +23,14 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v3
+
+
+      - name: check grading files
+        uses: actions/checkout@v3
+        with:
+          repository: yxc1yxc/gradingLAB3
+          token: ${{ LAB3 }}
+          path: grading
       
 
       
@@ -105,7 +113,7 @@ jobs:
 
         
       - name: Run with proper input
-        run: Get-Content WintestA.txt | .\build\src\Debug\*.exe TicTacToe > testAOutput.txt
+        run: Get-Content .\grading\WintestA.txt | .\build\src\Debug\*.exe TicTacToe > testAOutput.txt
         
 
       - name: Display testAOutput.txt
@@ -125,7 +133,7 @@ jobs:
       - name: check empty board
         run: |
           $actual = Get-Content testAOutput.txt -Raw
-          $expected = Get-Content emptyBoardTesting.txt -Raw
+          $expected = Get-Content .\grading\emptyBoardTesting.txt -Raw
           if ($actual -match $expected) {
             Write-Host "Empty board state is correct."
           } else {
@@ -136,7 +144,7 @@ jobs:
       - name: check first step
         run: |
           $actual = Get-Content testAOutput.txt -Raw
-          $expected = Get-Content testAstep1.txt -Raw
+          $expected = Get-Content .\grading\testAstep1.txt -Raw
           if ($actual -match $expected) {
             Write-Host "step 1 is correct."
           } else {
@@ -160,7 +168,7 @@ jobs:
       - name: check third step
         run: |
           $actual = Get-Content testAOutput.txt -Raw
-          $expected = Get-Content testAstep3.txt -Raw
+          $expected = Get-Content .\grading\testAstep3.txt -Raw
           if ($actual -match $expected) {
             Write-Host "step 3 is correct."
           } else {
@@ -172,7 +180,7 @@ jobs:
       - name: check fourth step
         run: |
           $actual = Get-Content testAOutput.txt -Raw
-          $expected = Get-Content testAstep4.txt -Raw
+          $expected = Get-Content .\grading\testAstep4.txt -Raw
           if ($actual -match $expected) {
             Write-Host "step 4 is correct."
           } else {
@@ -184,7 +192,7 @@ jobs:
       - name: check fifth step
         run: |
           $actual = Get-Content testAOutput.txt -Raw
-          $expected = Get-Content testAstep5.txt -Raw
+          $expected = Get-Content .\grading\testAstep5.txt -Raw
           if ($actual -match $expected) {
             Write-Host "step 5 is correct."
           } else {
@@ -193,7 +201,7 @@ jobs:
           }
 
       - name: Run with proper input B
-        run: Get-Content WintestB.txt | .\build\src\Debug\*.exe TicTacToe > testBOutput.txt
+        run: Get-Content .\grading\WintestB.txt | .\build\src\Debug\*.exe TicTacToe > testBOutput.txt
         
 
       - name: Display testBOutput.txt
@@ -213,7 +221,7 @@ jobs:
       - name: check empty board
         run: |
           $actual = Get-Content testBOutput.txt -Raw
-          $expected = Get-Content emptyBoardTesting.txt -Raw
+          $expected = Get-Content .\grading\emptyBoardTesting.txt -Raw
           if ($actual -match $expected) {
             Write-Host "Empty board state is correct."
           } else {
@@ -224,7 +232,7 @@ jobs:
       - name: check first step
         run: |
           $actual = Get-Content testBOutput.txt -Raw
-          $expected = Get-Content testBstep1.txt -Raw
+          $expected = Get-Content .\grading\testBstep1.txt -Raw
           if ($actual -match $expected) {
             Write-Host "step 1 is correct."
           } else {
@@ -236,7 +244,7 @@ jobs:
       - name: check second step
         run: |
           $actual = Get-Content testBOutput.txt -Raw
-          $expected = Get-Content testBstep2.txt -Raw
+          $expected = Get-Content .\grading\testBstep2.txt -Raw
           if ($actual -match $expected) {
             Write-Host "step 2 is correct."
           } else {
@@ -248,7 +256,7 @@ jobs:
       - name: check third step
         run: |
           $actual = Get-Content testBOutput.txt -Raw
-          $expected = Get-Content testBstep3.txt -Raw
+          $expected = Get-Content .\grading\testBstep3.txt -Raw
           if ($actual -match $expected) {
             Write-Host "step 3 is correct."
           } else {
@@ -260,7 +268,7 @@ jobs:
       - name: check fourth step
         run: |
           $actual = Get-Content testBOutput.txt -Raw
-          $expected = Get-Content testBstep4.txt -Raw
+          $expected = Get-Content .\grading\testBstep4.txt -Raw
           if ($actual -match $expected) {
             Write-Host "step 4 is correct."
           } else {
@@ -272,7 +280,7 @@ jobs:
       - name: check fifth step
         run: |
           $actual = Get-Content testBOutput.txt -Raw
-          $expected = Get-Content testBstep5.txt -Raw
+          $expected = Get-Content .\grading\testBstep5.txt -Raw
           if ($actual -match $expected) {
             Write-Host "step 5 is correct."
           } else {
@@ -281,7 +289,7 @@ jobs:
           }
 
       - name: Run with proper input C
-        run: Get-Content WintestC.txt | .\build\src\Debug\*.exe TicTacToe > testCOutput.txt
+        run: Get-Content .\grading\WintestC.txt | .\build\src\Debug\*.exe TicTacToe > testCOutput.txt
         
 
       - name: Display testCOutput.txt
@@ -301,7 +309,7 @@ jobs:
       - name: check empty board
         run: |
           $actual = Get-Content testCOutput.txt -Raw
-          $expected = Get-Content emptyBoardTesting.txt -Raw
+          $expected = Get-Content .\grading\emptyBoardTesting.txt -Raw
           if ($actual -match $expected) {
             Write-Host "Empty board state is correct."
           } else {
@@ -312,7 +320,7 @@ jobs:
       - name: check first step
         run: |
           $actual = Get-Content testCOutput.txt -Raw
-          $expected = Get-Content testCstep1.txt -Raw
+          $expected = Get-Content .\grading\testCstep1.txt -Raw
           if ($actual -match $expected) {
             Write-Host "step 1 is correct."
           } else {
@@ -324,7 +332,7 @@ jobs:
       - name: check second step
         run: |
           $actual = Get-Content testCOutput.txt -Raw
-          $expected = Get-Content testCstep2.txt -Raw
+          $expected = Get-Content .\grading\testCstep2.txt -Raw
           if ($actual -match $expected) {
             Write-Host "step 2 is correct."
           } else {
@@ -336,7 +344,7 @@ jobs:
       - name: check third step
         run: |
           $actual = Get-Content testCOutput.txt -Raw
-          $expected = Get-Content testCstep3.txt -Raw
+          $expected = Get-Content .\grading\testCstep3.txt -Raw
           if ($actual -match $expected) {
             Write-Host "step 3 is correct."
           } else {
@@ -348,7 +356,7 @@ jobs:
       - name: check fourth step
         run: |
           $actual = Get-Content testCOutput.txt -Raw
-          $expected = Get-Content testCstep4.txt -Raw
+          $expected = Get-Content .\grading\testCstep4.txt -Raw
           if ($actual -match $expected) {
             Write-Host "step 4 is correct."
           } else {
@@ -360,7 +368,7 @@ jobs:
       - name: check fifth step
         run: |
           $actual = Get-Content testCOutput.txt -Raw
-          $expected = Get-Content testCstep5.txt -Raw
+          $expected = Get-Content .\grading\testCstep5.txt -Raw
           if ($actual -match $expected) {
             Write-Host "step 5 is correct."
           } else {
@@ -369,7 +377,7 @@ jobs:
           }
 
       - name: Run with draw input
-        run: Get-Content drawTest.txt | .\build\src\Debug\*.exe TicTacToe > drawCase.txt
+        run: Get-Content .\grading\drawTest.txt | .\build\src\Debug\*.exe TicTacToe > drawCase.txt
         continue-on-error: true
 
       - name: Check draw
@@ -384,7 +392,7 @@ jobs:
 
 
       - name: input for quit
-        run: Get-Content quitTestA.txt | .\build\src\Debug\*.exe TicTacToe > quitTestAOutPut.txt 
+        run: Get-Content .\grading\quitTestA.txt | .\build\src\Debug\*.exe TicTacToe > quitTestAOutPut.txt 
         continue-on-error: true
 
       - name: Display output content
@@ -415,7 +423,7 @@ jobs:
           }
 
       - name: input for quit part 2
-        run: Get-Content quitTestB.txt | .\build\src\Debug\*.exe TicTacToe > quitTestBOutPut.txt 
+        run: Get-Content .\grading\quitTestB.txt | .\build\src\Debug\*.exe TicTacToe > quitTestBOutPut.txt 
         continue-on-error: true
 
       
@@ -441,7 +449,7 @@ jobs:
         continue-on-error: true
 
       - name: input for history check
-        run: Get-Content WintestA.txt | .\build\src\Debug\*.exe TicTacToe > historyOutput.txt
+        run: Get-Content .\grading\WintestA.txt | .\build\src\Debug\*.exe TicTacToe > historyOutput.txt
 
       - name: Display
         run: Get-Content historyOutput.txt
@@ -449,7 +457,7 @@ jobs:
       - name: check history
         run: |
           $actualLines = Get-Content historyOutput.txt
-          $conditions = Get-Content -Path recordPattern.txt
+          $conditions = Get-Content -Path .\grading\recordPattern.txt
           $allMatched = $true
           
           # Iterate over each pattern
@@ -491,7 +499,7 @@ jobs:
             echo "::set-output name=exit_code::3"
             exit 3
           }
-          Write-Output "Program terminated normally with 'quit' command."
+          Write-Output "Program terminated normally."
         continue-on-error: true
           
 
